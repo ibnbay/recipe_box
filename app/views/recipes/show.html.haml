@@ -1,0 +1,29 @@
+.main_content
+  #resep_top.row
+    .col-md-4
+      = image_tag @recipe.image.url(:medium), class: "resep_image"
+    .col-md-8
+      #resep_info
+        %h1= @recipe.title
+        %p.description= @recipe.description
+
+  .row
+    .col-md-6
+      #bahans
+        %h2 Bahan-bahan
+        %ul
+          - @recipe.bahans.each do |bahan|
+            %li= bahan.name
+
+    .col-md-6
+      #tahapans
+        %h2 Tahap memasak
+        %ul
+          - @recipe.tahapans.each do |tahap|
+            %li= tahap.step
+
+  .row
+    .col-md-12
+      = link_to "Kembali", root_path, class: "btn btn-default"
+      = link_to "Edit", edit_recipe_path, class: "btn btn-default"
+      = link_to "Hapus", recipe_path, method: :delete, data: {confirm: "Apakah sudah yakin mau di delete?"}, class:"btn btn-default"
